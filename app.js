@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezone = document.querySelector(".location-timezone");
     let temperatureSection = document.querySelector(".temperature");
-    const temperatureSpan = document.querySelector(".temperature-span");
+    const temperatureSpan = document.querySelector('.temperature span');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -19,6 +19,7 @@ window.addEventListener('load', () => {
                     return response.json();
                 })
                 .then(data => {
+                    console.log(data);
                     const { temperature, summary, icon } = data.currently;
                     //srt DOM element from the API
                     temperatureDegree.textContent = temperature;
@@ -46,10 +47,10 @@ window.addEventListener('load', () => {
     }
 
     function setIcons(icon, iconID) {
-        const Skycons = new Skycons({ color: "white" });
+        const skycons = new Skycons({ color: "white" });
         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
-        Skycons.play();
-        return Skycons.set(iconID, Skycons[currentIcon]);
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
 
     }
 });
